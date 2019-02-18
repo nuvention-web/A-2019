@@ -7,7 +7,7 @@ apiKey: "AIzaSyBR_Uy5rZW-lvfq_aaDzM-yZP3H_NWCMSg",
 authDomain: "profashion.firebaseapp.com",
 databaseURL: "https://profashion.firebaseio.com",
 projectId: "profashion",
-storageBucket: "",
+storageBucket: "gs://profashion.appspot.com/",
 messagingSenderId: "633591524876"
 };
 
