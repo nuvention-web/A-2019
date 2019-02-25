@@ -39,6 +39,7 @@ class SignUpFormBase extends Component {
           .set({
             username,
             email,
+            image:0
           });
       })
       .then(() => {
