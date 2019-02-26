@@ -99,7 +99,7 @@ class Album extends Component {
         {this.state.pantsURL && <img src={this.state.pantsURL} height="250px"/>}
         <h1>number of clothes you have: {this.state.clothnumber}</h1>
         <label style={{backgroundColor: 'steelblue', color: 'white', padding: 10, borderRadius: 4, pointer: 'cursor'}}>
-          Upload your cloth
+          Upload my cloth
           <FileUploader
             hidden
             accept="image/*"
