@@ -53,3 +53,8 @@ expo start
 ```
 
 * And then you can see the project on your phone. And you just need to click on that, then you can see the app on your phone.
+
+
+### Contact Information
+
+Wei Hang: <WeiHang2020@u.northwestern.edu >
