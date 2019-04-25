@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, Text, Image } from 'react-native';
+import { View, ActivityIndicator, ScrollView, StyleSheet, Text, Image } from 'react-native';
 import WardrobeTab from '../components/WardrobeTab';
 import AddNewCloth from '../components/AddNewCloth';
+import ClothFeatures from '../components/ClothFeatures';
 
 export default class WardrobeScreen extends React.Component {
   static navigationOptions = {
@@ -9,11 +10,15 @@ export default class WardrobeScreen extends React.Component {
   };
   state = {
     newUpload: false,
-    uploadSuccess: false
+    uploadSuccess: false,
+    loading: false,
   }
 
   switchContent = () => {
-    this.setState({newUpload: true});
+    this.setState({loading:true});
+    setTimeout(()=>{this.setState({newUpload: true,loading: false})},
+      4000
+    );
   }
 
   uploadSuccess = () =>{
@@ -21,8 +26,11 @@ export default class WardrobeScreen extends React.Component {
   }
 
   render() {
+    if (this.state.loading){
+      return(<View style={{top: 300,justifyContent: 'center'}}><ActivityIndicator size="large" color='#FF9696' /></View>)
+    }
     if (this.state.newUpload){
-      return(<AddNewCloth goHome={this.uploadSuccess}/>)
+      return(<ClothFeatures goHome={this.uploadSuccess}/>)
     }
     else{
       if (this.state.uploadSuccess){
