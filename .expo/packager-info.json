@@ -3,7 +3,8 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://az-yu3.profashion.a-2019.exp.direct",
+  "packagerNgrokUrl": "https://packager.az-yu3.profashion.a-2019.exp.direct",
+  "ngrokPid": 28017,
+  "webpackServerPort": null
 }

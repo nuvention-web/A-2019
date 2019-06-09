@@ -6,9 +6,20 @@ import { FloatingAction } from 'react-native-floating-action';
 import { ImagePicker, Permissions, Constants } from 'expo';
 import FileUploader from "react-firebase-file-uploader";
 import firebase from './../Firebase.js';
+import SingleWardrobeTab from './SingleWardrobeTab.js';
+
  
 // More info on all the options is below in the API Reference... just some common use cases shown here
 
+        // <FloatingAction
+        //   actions={actions}
+        //   color='#FF9696'
+        //   onPressItem={
+        //     (name) => {
+        //       name=='uploadPicture' ? this.useLibraryHandler() : this.useCameraHandler();
+        //     }
+        //   }
+        // />
 
 const actions = [{
   text: 'Take a picture',
@@ -65,15 +76,18 @@ const requireCoat = (id) =>{
             // case 7: return require('../statics/pictures/coat7.png');
 }}
 const trousersUrl = [
-  {id: 1, url: "https://firebasestorage.googleapis.com/v0/b/profashion.appspot.com/o/images%2Ftrousers_red.png?alt=media&token=739125d2-6d31-40a7-9260-f0be5a69c30f"},
-  {id: 2, url: "https://firebasestorage.googleapis.com/v0/b/profashion.appspot.com/o/images%2Ftrousers_blue.png?alt=media&token=a50c441a-098b-4b12-b89a-b1ff3903a0f1"},
+  {id: 1, url: "https://firebasestorage.googleapis.com/v0/b/profashion.appspot.com/o/images%2Fwhite.png?alt=media&token=592700e5-8eb0-44c7-b04f-94c012cceb7c"},
+  {id: 2, url: "https://firebasestorage.googleapis.com/v0/b/profashion.appspot.com/o/images%2Fblue.png?alt=media&token=44b579c6-7b38-4f63-904a-f0e8e5e9af05"},
   {id: 3, url: "https://firebasestorage.googleapis.com/v0/b/profashion.appspot.com/o/images%2Ftrousers_gray.png?alt=media&token=43c9e3ec-16ad-4a75-9eab-d2b4b896aa69"},
-  {id: 4, url: "https://firebasestorage.googleapis.com/v0/b/profashion.appspot.com/o/images%2Ftrousers_green.png?alt=media&token=2d1eacc4-d719-4cc3-bd47-37eec85eb49d"},
-  {id: 5, url: "https://firebasestorage.googleapis.com/v0/b/profashion.appspot.com/o/images%2Ftrousers_white.png?alt=media&token=780ab371-02d9-4428-b3ae-4781e3969dd4"},
+  {id: 4, url: "https://firebasestorage.googleapis.com/v0/b/profashion.appspot.com/o/images%2Forange.png?alt=media&token=3ee3dcdd-59b9-4f62-9155-620c0d19662f"},
+  {id: 5, url: "https://firebasestorage.googleapis.com/v0/b/profashion.appspot.com/o/images%2Fblack.png?alt=media&token=c7d5fdbf-a6d8-4b62-9ca2-22675a57e5f3"},
 ]
 
 
 export default class WardrobeTab extends React.Component {
+  componentDidMount() {
+  }
+
   state = {
     index: 0,
     photos: {},
@@ -83,65 +97,24 @@ export default class WardrobeTab extends React.Component {
       { key: 'coat', title: 'Coat' },
       { key: 'shoe', title: 'Shoe' },
     ],
+
   };
 
-	TopRoute = () => (
-			<View >
-				<FlatList
-				  data={this.props.data}
-				  style={{backgroundColor: '#F7F7F7', paddingBottom: '140%'}}
-				  numColumns={2}
-				  renderItem={({item}) => {
-				  	var img = requireFile(item.key);
-				  	return(
-				  	<View style={styles.imageContainer}>
-				  		<Image style={styles.imageBg} source={require('../statics/pictures/cloth-bg.png')} />
-				  		<Image style={styles.imageCloth} source={img} />
-						</View>);
-				  }}
-				  />
-        <FloatingAction
-          actions={actions}
-          color='#FF9696'
-          onPressItem={
-            (name) => {
-            	name=='uploadPicture' ? this.useLibraryHandler() : this.useCameraHandler();
-            }
-          }
-        />
-      </View>
-	);
-  BottomRoute = () => (
-      <View >
-        <FlatList
-          data={[{key: 1}, {key: 2}, {key: 3}, {key: 4}, {key: 5}]}
-          style={{backgroundColor: '#F7F7F7', paddingBottom: '140%'}}
-          numColumns={2}
-          renderItem={({item}) => {
-            var img = trousersUrl[item.key-1].url;//requireBottom(item.key);
-            return(
-            <View style={styles.imageContainer}>
-              <Image style={styles.imageBg} source={require('../statics/pictures/cloth-bg.png')} />
-              <Image style={styles.imageCloth} source={{uri:img}} />
-            </View>);
-          }}
-          />
-        <FloatingAction
-          actions={actions}
-          color='#FF9696'
-          onPressItem={
-            (name) => {
-              name=='uploadPicture' ? this.useLibraryHandler() : this.useCameraHandler();
-            }
-          }
-        />
-      </View>
-  );
+	TopRoute = () => {
+    return(
+      <SingleWardrobeTab type="tops" switch={this.props.switch} startLoading={this.props.startLoading} navigation={this.props.navigation} />
+)
+  };
+  BottomRoute = () => {
+    return(
+      <SingleWardrobeTab type="bottoms" switch={this.props.switch} startLoading={this.props.startLoading} navigation={this.props.navigation}/>)
+  
+  };
   CoatRoute = () => (
       <View >
         <FlatList
           data={[{key: 1}, {key: 2}]}
-          style={{backgroundColor: '#F7F7F7', paddingBottom: '140%'}}
+          style={{backgroundColor: '#F7F7F7'}}
           numColumns={2}
           renderItem={({item}) => {
             var img = requireCoat(item.key);
@@ -152,22 +125,13 @@ export default class WardrobeTab extends React.Component {
             </View>);
           }}
           />
-        <FloatingAction
-          actions={actions}
-          color='#FF9696'
-          onPressItem={
-            (name) => {
-              name=='uploadPicture' ? this.useLibraryHandler() : this.useCameraHandler();
-            }
-          }
-        />
       </View>
   );
   ShoeRoute = () => (
       <View >
         <FlatList
           data={[{key: 1}, {key: 2}, {key: 3}]}
-          style={{backgroundColor: '#F7F7F7', paddingBottom: '140%'}}
+          style={{backgroundColor: '#F7F7F7'}}
           numColumns={2}
           renderItem={({item}) => {
             var img = requireShoe(item.key);
@@ -178,15 +142,6 @@ export default class WardrobeTab extends React.Component {
             </View>);
           }}
           />
-        <FloatingAction
-          actions={actions}
-          color='#FF9696'
-          onPressItem={
-            (name) => {
-              name=='uploadPicture' ? this.useLibraryHandler() : this.useCameraHandler();
-            }
-          }
-        />
       </View>
   );
   askPermissionsAsync = async () => {
@@ -202,35 +157,22 @@ export default class WardrobeTab extends React.Component {
       allowsEditing: true,
       aspect: [1, 2],
       base64: false,
+      quality: 0.1,
     });
     if (!result.cancelled) {
-      this.uploadImage(result.uri); 
+      this.props.startLoading();
+      await this.uploadImage(result.uri); 
+      this.props.switch(result.uri);  
     }
-    // fetch('http://54.219.183.166/hello/hellopost/', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     'jacket': 'red'
-    //   }),
-    // }).then((response) => response.json())
-    //     .then((responseJson) => {
-    //       console.log(responseJson);
-    //       this.props.switch(responseJson);
-    //     })
-    //     .catch((error) => {
-    //       console.error(error);
-    //     });
-    this.props.switch();
   };
 
   useCameraHandler = async () => {
     await this.askPermissionsAsync();
-    let result = await ImagePicker.launchCameraAsync();
+    let result = await ImagePicker.launchCameraAsync({
+      quality:0.1});
     if (!result.cancelled) {
-      this.uploadImage(result.uri); 
+      this.props.startLoading();
+      await this.uploadImage(result.uri); 
     }
     this.props.switch();
   };
@@ -250,8 +192,9 @@ export default class WardrobeTab extends React.Component {
       xhr.open('GET', uri, true);
       xhr.send(null);
     });
-    var ref = firebase.storage().ref('images').child("upload.png");
-    return ref.put(blob);
+    var ref = firebase.storage().ref('images').child(firebase.auth().currentUser.uid+'.png');
+    const res = await ref.put(blob);
+
   } 
 
   render() {
@@ -274,7 +217,7 @@ export default class WardrobeTab extends React.Component {
           shoe: this.ShoeRoute,
         })}
         onIndexChange={index => this.setState({ index })}
-        initialLayout={{ width: Dimensions.get('window').width }}
+        initialLayout={{width: Dimensions.get('window').width}}
       />
     );
   }

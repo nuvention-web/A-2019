@@ -6,6 +6,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import WardrobeScreen from '../screens/WardrobeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import SingleItemScreen from '../screens/SingleItemScreen';
+import ItemMatchScreen from '../screens/ItemMatchScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -28,6 +30,8 @@ HomeStack.navigationOptions = {
 
 const LinksStack = createStackNavigator({
   Wardrobe: WardrobeScreen,
+  SingleItem: SingleItemScreen,
+  ItemMatch: ItemMatchScreen
 });
 
 LinksStack.navigationOptions = {
