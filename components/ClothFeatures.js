@@ -59,6 +59,7 @@ export default class ClothFeatures extends React.Component {
               var features = {};
               Object.keys(responseJson.labels).forEach(function(key){
                 if (responseJson.labels[key]!='Invisible'){ //& key!="pant_length_labels" & key!="skirt_length_labels"){
+                  new_key = key.slice(0, -7)
                   features[key.slice(0,-7)]=responseJson.labels[key];
                 }
               })
@@ -69,6 +70,7 @@ export default class ClothFeatures extends React.Component {
               console.error(error);
             })});    
   }
+
   upload = async() => {
     this.setState({disabledn: true});
     var itemId = "";
@@ -120,10 +122,7 @@ export default class ClothFeatures extends React.Component {
 
   } 
 
-  editLabels = () =>{
 
-    // this.picker.toggle();
-  }
 
   componentDidMount() {
     firebase.database().ref('serverAddr/').once('value', function (snapshot) {
