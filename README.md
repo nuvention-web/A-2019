@@ -2,37 +2,38 @@
 
 Directions to run the project.
 
-First you need to clone our code.
+## Installation
+1. Clone our code
 
-```
-git clone https://github.com/nuvention-web/A-2019.git
-```
-
-Then you need to checkout to our **mobile** branch.
-
-```
-git checkout mobile
+```sh
+$ git clone https://github.com/nuvention-web/A-2019.git
 ```
 
-Install all the package that you need:
+2. Then you need to go to the directory where you cloned our code.
 
-```
-npm i
-```
-
-Install Expo:
-
-```
-npm install expo-cli --global
+```sh
+$ cd ~/Desktop/A-2019/
 ```
 
-Start Expo:
+3. Install all the package that you need:
 
-```
-expo start
+```sh
+$ npm i
 ```
 
-Then you have two options, whether to start the app simulator on your computer or install the app on your phone.
+4. Install Expo:
+
+```sh
+$ npm install expo-cli --global
+```
+
+5. Start Expo:
+
+```sh
+$ expo start
+```
+
+Here you have two options, whether to start the app simulator on your computer or install the app on your phone.
 
 1. Start the app simulator
 
@@ -42,14 +43,14 @@ Then you have two options, whether to start the app simulator on your computer o
 
 * First you need to download the "Expo" from your app store, and then you type command "expo login" at your terminal.
 
-```
-expo login
+```sh
+$ expo login
 ```
 
 * Then, you start the server:
 
-```
-expo start
+```sh
+$ expo start
 ```
 
 * And then you can see the project on your phone. And you just need to click on that, then you can see the app on your phone.
